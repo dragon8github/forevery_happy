@@ -1,0 +1,4 @@
+C:\Users\lizhaohong\Desktop\联众答题-CSharp-DLL-实例\实例\WindowsFormsApplication1\obj\x86\Release\WindowsFormsApplication1.Form1.resources
+C:\Users\lizhaohong\Desktop\联众答题-CSharp-DLL-实例\实例\WindowsFormsApplication1\obj\x86\Release\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\lizhaohong\Desktop\联众答题-CSharp-DLL-实例\实例\WindowsFormsApplication1\obj\x86\Release\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\lizhaohong\Desktop\联众答题-CSharp-DLL-实例\实例\WindowsFormsApplication1\obj\x86\Release\WindowsFormsApplication1.csproj.CoreCompileInputs.cache
