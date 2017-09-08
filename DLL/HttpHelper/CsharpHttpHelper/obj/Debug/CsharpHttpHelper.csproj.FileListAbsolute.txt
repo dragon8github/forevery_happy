@@ -1,0 +1,7 @@
+C:\Users\lizhaohong\Desktop\surface_crawler_helper\CsharpHttpHelper\bin\Debug\HttpHelper.XML
+C:\Users\lizhaohong\Desktop\surface_crawler_helper\CsharpHttpHelper\bin\Debug\HttpHelper.dll
+C:\Users\lizhaohong\Desktop\surface_crawler_helper\CsharpHttpHelper\bin\Debug\HttpHelper.pdb
+C:\Users\lizhaohong\Desktop\surface_crawler_helper\CsharpHttpHelper\obj\Debug\CsharpHttpHelper.csprojResolveAssemblyReference.cache
+C:\Users\lizhaohong\Desktop\surface_crawler_helper\CsharpHttpHelper\obj\Debug\CsharpHttpHelper.csproj.CoreCompileInputs.cache
+C:\Users\lizhaohong\Desktop\surface_crawler_helper\CsharpHttpHelper\obj\Debug\HttpHelper.dll
+C:\Users\lizhaohong\Desktop\surface_crawler_helper\CsharpHttpHelper\obj\Debug\HttpHelper.pdb

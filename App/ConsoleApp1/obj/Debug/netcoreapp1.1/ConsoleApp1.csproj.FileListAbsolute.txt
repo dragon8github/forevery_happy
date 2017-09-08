@@ -1,0 +1,10 @@
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\bin\Debug\netcoreapp1.1\ConsoleApp1.deps.json
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\bin\Debug\netcoreapp1.1\ConsoleApp1.runtimeconfig.json
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\bin\Debug\netcoreapp1.1\ConsoleApp1.runtimeconfig.dev.json
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\bin\Debug\netcoreapp1.1\ConsoleApp1.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\bin\Debug\netcoreapp1.1\ConsoleApp1.pdb
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\obj\Debug\netcoreapp1.1\ConsoleApp1.csprojResolveAssemblyReference.cache
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\obj\Debug\netcoreapp1.1\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\obj\Debug\netcoreapp1.1\ConsoleApp1.AssemblyInfo.cs
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\obj\Debug\netcoreapp1.1\ConsoleApp1.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\ConsoleApp1\obj\Debug\netcoreapp1.1\ConsoleApp1.pdb

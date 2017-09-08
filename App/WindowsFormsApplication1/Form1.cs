@@ -33,9 +33,10 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-
+            // 设置第二个tab为默认的显示项
+            this.tabControl1.SelectedIndex = 1;
         }
     }
 }
