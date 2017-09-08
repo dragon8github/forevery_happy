@@ -1,0 +1,16 @@
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Test.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Test.pdb
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.pdb
