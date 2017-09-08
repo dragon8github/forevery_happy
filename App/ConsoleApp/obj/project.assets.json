@@ -7045,11 +7045,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\lizhaohong\\Desktop\\forevery_happy\\App\\ConsoleApp1\\ConsoleApp.csproj",
+      "projectUniqueName": "C:\\Users\\lizhaohong\\Desktop\\forevery_happy\\App\\ConsoleApp\\ConsoleApp.csproj",
       "projectName": "ConsoleApp",
-      "projectPath": "C:\\Users\\lizhaohong\\Desktop\\forevery_happy\\App\\ConsoleApp1\\ConsoleApp.csproj",
+      "projectPath": "C:\\Users\\lizhaohong\\Desktop\\forevery_happy\\App\\ConsoleApp\\ConsoleApp.csproj",
       "packagesPath": "C:\\Users\\lizhaohong\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lizhaohong\\Desktop\\forevery_happy\\App\\ConsoleApp1\\obj\\",
+      "outputPath": "C:\\Users\\lizhaohong\\Desktop\\forevery_happy\\App\\ConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lizhaohong\\AppData\\Roaming\\NuGet\\NuGet.Config",
