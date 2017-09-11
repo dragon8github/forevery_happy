@@ -7,24 +7,26 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            string Path = Directory.GetCurrentDirectory() + "/assets";
-            if (!Directory.Exists(Path)) {
-                Directory.CreateDirectory(Path);
-            }
-            string myTime = GetTimeStamp();
-            Console.WriteLine("Hello World!" + Path);
-            Console.WriteLine("Hello World!" + myTime);
+            int aa = TestLambda(str => {
+                Console.WriteLine(str);
+                return 1234;
+            });
+            Console.WriteLine(aa + "fuck");
             Console.ReadLine();
         }
 
-        /// <summary>  
-        /// 获取时间戳  
-        /// </summary>  
-        /// <returns></returns>  
-        public static string GetTimeStamp()
+
+        public static int TestLambda(Func<string, int> action)
         {
-            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            return Convert.ToInt64(ts.TotalMilliseconds).ToString();
+            // 调用这个函数，并且传递一个值
+            int a = action("Hello World");
+            Console.WriteLine(a);
+            return a;
+        }
+
+        public static void TestLambda(Action<string> action)
+        {
+
         }
     }
 }

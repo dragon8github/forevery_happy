@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -46,9 +47,26 @@ namespace WinFormApp
             return GetTimeStamp() + "." + ext;
         }
 
+        /// <summary>
+        /// 截取WebBrowser网页中的图片
+        /// </summary>
+        /// <param name="webBrowser">WebBrowser实例对象</param>
+        /// <param name="width">宽</param>
+        /// <param name="height">高</param>
         public static void CutPic(WebBrowser webBrowser, int width = 322, int height = 411)
         {
-           
+            Bitmap bitmap = new Bitmap(width, height);
+            Rectangle rectangle = new Rectangle(0, 0, width, height);
+            webBrowser.DrawToBitmap(bitmap, rectangle);
+
+            // 保存图片
+            String Path = GetAssetsPath() + "/" + GetPicName();
+            bitmap.Save(Path);  
+        }
+
+        public static void TestLamda(Action<string> action)
+        {
+            action("123");
         }
 
     }
