@@ -53,21 +53,15 @@ namespace WinFormApp
         /// <param name="webBrowser">WebBrowser实例对象</param>
         /// <param name="width">宽</param>
         /// <param name="height">高</param>
-        public static void CutPic(WebBrowser webBrowser, int width = 322, int height = 411)
+        public static void CutPic(WebBrowser w, int width = 322, int height = 411)
         {
             Bitmap bitmap = new Bitmap(width, height);
             Rectangle rectangle = new Rectangle(0, 0, width, height);
-            webBrowser.DrawToBitmap(bitmap, rectangle);
+            w.DrawToBitmap(bitmap, rectangle);
 
             // 保存图片
             String Path = GetAssetsPath() + "/" + GetPicName();
             bitmap.Save(Path);  
         }
-
-        public static void TestLamda(Action<string> action)
-        {
-            action("123");
-        }
-
     }
 }
