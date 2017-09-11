@@ -13,4 +13,3 @@ C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.Visua
 C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\TestApp.csproj.CoreCompileInputs.cache
 C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.dll
 C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.pdb
-C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
