@@ -27,7 +27,7 @@ namespace WinFormApp
             //string returnMess = VerCode.RecByte_A(bytes, bytes.Length, username, pwd, softKey);
 
             //上传本地验证码(地址，验证码类型，最小验证码字数，最大验证码字数，用户名，密码，推荐人)
-            string returnMess = VerCode.RecYZM_A_2("c:\\getimage.jpg", 1303, 2, 4, username, pwd, softKey);
+            string returnMess = VerCode.RecYZM_A_2("c:\\getimage.png", 1303, 2, 4, username, pwd, softKey);
             //string returnMess = VerCode.RecYZM_A("c:\\getimage.png", username, pwd, softKey);
             Console.WriteLine(returnMess);
         }

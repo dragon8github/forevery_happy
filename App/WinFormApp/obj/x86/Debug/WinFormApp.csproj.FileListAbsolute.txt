@@ -2,7 +2,6 @@ C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\bin\Debug\WinFormApp.e
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\bin\Debug\WinFormApp.pdb
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\bin\Debug\FastVerCode.dll
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\bin\Debug\FastVerCode.pdb
-C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csprojResolveAssemblyReference.cache
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.Form1.resources
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.Properties.Resources.resources
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csproj.GenerateResource.Cache

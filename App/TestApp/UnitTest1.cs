@@ -9,7 +9,10 @@ namespace Test
         [TestMethod]
         public void TestMethod1()
         {
-
+            int a = 100;
+            int b = 200;
+            Console.WriteLine(456);
+            Assert.AreEqual(b - a, 100);
         }
     }
 }
