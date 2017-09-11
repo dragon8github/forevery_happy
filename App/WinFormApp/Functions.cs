@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 
 namespace WinFormApp
 {
@@ -32,13 +33,23 @@ namespace WinFormApp
         /// 是否存在资源路径assets，如果不存在则创建，返回路径
         /// </summary>
         /// <returns></returns>
-        public static string AssetsPath() {
+        public static string GetAssetsPath() {
             string Path = Directory.GetCurrentDirectory() + "/assets";
             return MakePath(Path);
         }
 
-        public static string GetPicExt() {
-            return ".jpg";
+        /// <summary>
+        /// 生成并且返回图片的名字，其实就是时间戳，默认为jpg
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPicName(string ext = "jpg") {
+            return GetTimeStamp() + "." + ext;
         }
+
+        public static void CutPic(WebBrowser webBrowser, int width = 322, int height = 411)
+        {
+           
+        }
+
     }
 }

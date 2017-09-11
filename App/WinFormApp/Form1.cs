@@ -42,10 +42,11 @@ namespace WinFormApp
         {
             try {
                 this.webBrowser1.Url = new Uri(this.textBox11.Text);
-                //WebBrowser wb = new WebBrowser();
+                WebBrowser wb = new WebBrowser();
                 //wb.Url = new Uri(this.textBox11.Text);
                 //wb.Navigated += webBrowser1_Navigated;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
             }
         }
@@ -57,6 +58,9 @@ namespace WinFormApp
             //MessageBox.Show("加载完毕");
             //MessageBox.Show(wb.DocumentTitle);
             //MessageBox.Show(wb.DocumentText);
+
+            WebBrowser wb = (WebBrowser)sender;
+            
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -65,7 +69,10 @@ namespace WinFormApp
             int height = 411;
             Bitmap bitmap = new Bitmap(width, height);
             Rectangle rectangle = new Rectangle(0, 0, width, height);
-            this.webBrowser1.DrawToBitmap(bitmap, rectangle);
+            WebBrowser wb = new WebBrowser();
+            wb.Url = new Uri(this.textBox11.Text);
+            wb.Navigated += webBrowser1_Navigated;
+            //this.webBrowser1.DrawToBitmap(bitmap, rectangle);
 
             // 保存图片对话框
             //SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -73,7 +80,7 @@ namespace WinFormApp
             //saveFileDialog.ShowDialog();
             //Console.WriteLine(saveFileDialog.FileName);
 
-            String Path = Functions.AssetsPath() + "/" + Functions.GetTimeStamp() + Functions.GetPicExt();
+            String Path = Functions.GetAssetsPath() + "/" + Functions.GetPicName();
             bitmap.Save(Path);  // 保存图片
             
         }
