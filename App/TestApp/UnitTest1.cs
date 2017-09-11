@@ -11,7 +11,7 @@ namespace Test
         {
             int a = 100;
             int b = 200;
-            Console.WriteLine(456);
+            Console.WriteLine(123);
             Assert.AreEqual(b - a, 100);
         }
     }

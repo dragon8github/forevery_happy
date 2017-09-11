@@ -37,5 +37,46 @@ namespace WinFormApp
             // 设置第二个tab为默认的显示项
             this.tabControl1.SelectedIndex = 1;
         }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            try {
+                this.webBrowser1.Url = new Uri(this.textBox11.Text);
+                //WebBrowser wb = new WebBrowser();
+                //wb.Url = new Uri(this.textBox11.Text);
+                //wb.Navigated += webBrowser1_Navigated;
+            } catch (Exception ex) {
+                MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
+            }
+        }
+
+        private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            // 显示转换
+            //WebBrowser wb = (WebBrowser)sender;
+            //MessageBox.Show("加载完毕");
+            //MessageBox.Show(wb.DocumentTitle);
+            //MessageBox.Show(wb.DocumentText);
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            int width = 322;
+            int height = 411;
+            Bitmap bitmap = new Bitmap(width, height);
+            Rectangle rectangle = new Rectangle(0, 0, width, height);
+            this.webBrowser1.DrawToBitmap(bitmap, rectangle);
+
+            // 保存图片对话框
+            //SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.Filter = "JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png";
+            //saveFileDialog.ShowDialog();
+            //Console.WriteLine(saveFileDialog.FileName);
+
+            Console.WriteLine(Functions.AssetsPath() + "/" + Functions.GetTimeStamp() + Functions.GetPicExt());
+
+            bitmap.Save(Functions.AssetsPath() + Functions.GetTimeStamp() + Functions.GetPicExt());  // 保存图片
+            
+        }
     }
 }
