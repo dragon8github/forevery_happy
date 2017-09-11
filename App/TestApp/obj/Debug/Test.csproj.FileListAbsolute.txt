@@ -10,7 +10,6 @@ C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.Visua
 C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
-C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.csprojResolveAssemblyReference.cache
 C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.csproj.CoreCompileInputs.cache
 C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.dll
 C:\Users\lizhaohong\Desktop\forevery_happy\App\TestApp\obj\Debug\Test.pdb
