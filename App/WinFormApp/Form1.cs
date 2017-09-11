@@ -73,9 +73,8 @@ namespace WinFormApp
             //saveFileDialog.ShowDialog();
             //Console.WriteLine(saveFileDialog.FileName);
 
-            Console.WriteLine(Functions.AssetsPath() + "/" + Functions.GetTimeStamp() + Functions.GetPicExt());
-
-            bitmap.Save(Functions.AssetsPath() + Functions.GetTimeStamp() + Functions.GetPicExt());  // 保存图片
+            String Path = Functions.AssetsPath() + "/" + Functions.GetTimeStamp() + Functions.GetPicExt();
+            bitmap.Save(Path);  // 保存图片
             
         }
     }
