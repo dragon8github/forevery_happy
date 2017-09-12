@@ -36,9 +36,7 @@ namespace WinFormApp
         {
             try {
                 this.webBrowser1.Url = new Uri(this.textBox11.Text);
-                WebBrowser wb = new WebBrowser();
-                //wb.Url = new Uri(this.textBox11.Text);
-                //wb.Navigated += webBrowser1_Navigated;
+                Functions.CutPic(this.webBrowser1);
             }
             catch (Exception ex) {
                 MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);

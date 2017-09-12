@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace WinFormApp
@@ -45,6 +46,36 @@ namespace WinFormApp
             return GetTimeStamp() + "." + ext;
         }
 
+        /// <summary>  
+        /// 清除事件绑定的函数  
+        /// </summary>  
+        /// <param name="objectHasEvents">拥有事件的实例</param>  
+        /// <param name="eventName">事件名称</param>  
+        private static void ClearAllEvents(object objectHasEvents, string eventName)
+        {
+            if (objectHasEvents == null) {
+                return;
+            }
+            try {
+                EventInfo[] events = objectHasEvents.GetType().GetEvents(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                if (events == null || events.Length < 1) {
+                    return;
+                }
+                for (int i = 0; i < events.Length; i++) {
+                    EventInfo ei = events[i];
+                    if (ei.Name == eventName) {
+                        FieldInfo fi = ei.DeclaringType.GetField(eventName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                        if (fi != null) {
+                            fi.SetValue(objectHasEvents, null);
+                        }
+                        break;
+                    }
+                }
+            }
+            catch {
+            }
+        }
+
         /// <summary>
         /// 截取WebBrowser网页中的图片
         /// </summary>
@@ -55,6 +86,9 @@ namespace WinFormApp
         {
             Bitmap bitmap = new Bitmap(width, height);
             Rectangle rectangle = new Rectangle(0, 0, width, height);
+            // 先移除事件绑定的函数，防止重复绑定，叠加效果（重复截图）
+            ClearAllEvents(w, "DocumentCompleted");
+            // 绑定一个lambda表达式函数
             w.DocumentCompleted += (sender, e) => {
                 w.DrawToBitmap(bitmap, rectangle);
                 // 保存图片
