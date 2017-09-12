@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace WinFormApp
@@ -57,11 +55,12 @@ namespace WinFormApp
         {
             Bitmap bitmap = new Bitmap(width, height);
             Rectangle rectangle = new Rectangle(0, 0, width, height);
-            w.DrawToBitmap(bitmap, rectangle);
-
-            // 保存图片
-            String Path = GetAssetsPath() + "/" + GetPicName();
-            bitmap.Save(Path);  
+            w.DocumentCompleted += (sender, e) => {
+                w.DrawToBitmap(bitmap, rectangle);
+                // 保存图片
+                String Path = GetAssetsPath() + "/" + GetPicName();
+                bitmap.Save(Path);
+            };
         }
     }
 }

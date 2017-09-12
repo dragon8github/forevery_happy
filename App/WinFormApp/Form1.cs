@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
 using FastVerCode;
 namespace WinFormApp
 {
@@ -53,38 +47,9 @@ namespace WinFormApp
 
         private void button13_Click(object sender, EventArgs e)
         {
-            //int width = 322;
-            //int height = 411;
-            //Bitmap bitmap = new Bitmap(width, height);
-            //Rectangle rectangle = new Rectangle(0, 0, width, height);
-            //WebBrowser wb = new WebBrowser {
-            //    Url = new Uri(this.textBox11.Text)
-            //};
-            //wb.Navigated += webBrowser1_Navigated;
-            //this.webBrowser1.DrawToBitmap(bitmap, rectangle);
-
-            // 保存图片对话框
-            //SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.Filter = "JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png";
-            //saveFileDialog.ShowDialog();
-            //Console.WriteLine(saveFileDialog.FileName);
-
-            //String Path = Functions.GetAssetsPath() + "/" + Functions.GetPicName();
-            //bitmap.Save(Path);  // 保存图片
-
-            Functions.CutPic(this.webBrowser1);
-        }
-
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            // 显示转换
-            WebBrowser wb = (WebBrowser)sender;
-            //MessageBox.Show("加载完毕");
-            //MessageBox.Show(wb.DocumentTitle);
-            //MessageBox.Show(wb.DocumentText);
-
-            //WebBrowser wb = (WebBrowser)sender;
-            Console.WriteLine(wb.ReadyState.ToString());
+            WebBrowser wb = new WebBrowser {
+                Url = new Uri(this.textBox11.Text)
+            };
             Functions.CutPic(wb);
         }
     }
