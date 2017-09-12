@@ -45,10 +45,30 @@ namespace WinFormApp
 
         private void button13_Click(object sender, EventArgs e)
         {
-            WebBrowser wb = new WebBrowser {
-                Url = new Uri(this.textBox11.Text)
-            };
-            Functions.CutPic(wb);
+            try {
+                WebBrowser wb = new WebBrowser {
+                    Url = new Uri(this.textBox11.Text),
+                    Width = 1024,
+                    Height = 768,
+                };
+                Functions.CutPic(wb);
+            }
+            catch (Exception ex) {
+                MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
+            }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            try {
+                this.webBrowser1.Url = new Uri(this.textBox11.Text);
+                this.webBrowser1.DocumentCompleted += (_sender, _e) => {
+                    this.webBrowser1.Document.GetElementById("blog_nav_newpost").InvokeMember("click");
+                };
+            }
+            catch (Exception ex) {
+                MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
+            }
         }
     }
 }

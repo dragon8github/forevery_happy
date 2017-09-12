@@ -57,7 +57,7 @@ namespace WinFormApp
                 return;
             }
             try {
-                EventInfo[] events = objectHasEvents.GetType().GetEvents(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                EventInfo[] events = objectHasEvents.GetType().GetEvents(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
                 if (events == null || events.Length < 1) {
                     return;
                 }
