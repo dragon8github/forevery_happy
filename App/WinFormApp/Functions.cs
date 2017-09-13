@@ -96,5 +96,22 @@ namespace WinFormApp
                 bitmap.Save(Path);
             };
         }
+
+        /// <summary>
+        /// 执行js代码
+        /// </summary>
+        /// <param name="jsCode"></param>
+        public static void ExecScript(WebBrowser w,string jsCode)
+        {
+            HtmlElement script = w.Document.CreateElement("script");
+            script.SetAttribute("type", "text/javascript");
+            script.SetAttribute("text", jsCode);
+            HtmlElement head = w.Document.Body.AppendChild(script);
+        }
+
+        public static void Login(WebBrowser w)
+        {
+            ExecScript(w, @"$('#username').val('18027059003');$('#password').val('ou826707');document.getElementById('loginsubmit').click()");
+        }
     }
 }

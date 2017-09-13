@@ -1,12 +1,25 @@
 ﻿using System;
 using System.Windows.Forms;
 using FastVerCode;
+using System.Diagnostics;
+using Microsoft.Win32;
+
 namespace WinFormApp
 {
     public partial class Form1 : Form
     {
+        public enum IE { IE7 = 7000, IE8 = 8000, IE9 = 9999, IE10 = 10001, IE11 = 11001 }
+
         public Form1()
         {
+            /**
+            * 解决WebBrowser默认的IE版本太低（IE7）的问题，只需要改变枚举即可
+            * https://dotblogs.com.tw/larrynung/archive/2012/10/15/77505.aspx
+            * https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx#browser_emulation
+            * InitializeComponent();
+            */
+            var appName = Process.GetCurrentProcess().MainModule.ModuleName;
+            Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", appName, IE.IE11, RegistryValueKind.DWord);
             InitializeComponent();
         }
 
@@ -36,7 +49,6 @@ namespace WinFormApp
         {
             try {
                 this.webBrowser1.Url = new Uri(this.textBox11.Text);
-                Functions.CutPic(this.webBrowser1);
             }
             catch (Exception ex) {
                 MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
@@ -69,6 +81,13 @@ namespace WinFormApp
             catch (Exception ex) {
                 MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
             }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            this.webBrowser1.ScriptErrorsSuppressed = true;
+            Functions.Login(this.webBrowser1);
+            Functions.CutPic(this.webBrowser1, 1920, 1080);
         }
     }
 }

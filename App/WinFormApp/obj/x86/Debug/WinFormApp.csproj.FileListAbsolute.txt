@@ -9,3 +9,6 @@ C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormA
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csproj.CoreCompileInputs.cache
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.exe
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.pdb
+C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\Interop.SHDocVw.dll
+C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csproj.ResolveComReference.cache
+C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\bin\Debug\Interop.SHDocVw.dll
