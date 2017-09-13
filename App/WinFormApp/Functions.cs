@@ -82,19 +82,34 @@ namespace WinFormApp
         /// <param name="webBrowser">WebBrowser实例对象</param>
         /// <param name="width">宽</param>
         /// <param name="height">高</param>
-        public static void CutPic(WebBrowser w, int width = 322, int height = 411)
+        public static void CutPic(WebBrowser w,int x = 0, int y = 0, int width = 325, int height = 413)
         {
+            //Console.WriteLine(x.ToString() + "-" + y.ToString() + "-" + width.ToString() + "-" + height.ToString());
             Bitmap bitmap = new Bitmap(width, height);
-            Rectangle rectangle = new Rectangle(0, 0, width, height);
-            // 先移除事件绑定的函数，防止重复绑定，叠加效果（重复截图）
-            ClearAllEvents(w, "DocumentCompleted");
-            // 绑定一个lambda表达式函数
-            w.DocumentCompleted += (sender, e) => {
+            Rectangle rectangle = new Rectangle(0, 0, 1024, 768);
+
+            // 如果这个WebBrowser已经加载完毕，那么就直接执行截图
+            if (w.ReadyState == WebBrowserReadyState.Complete) {
                 w.DrawToBitmap(bitmap, rectangle);
+                Bitmap _bitmap = new Bitmap(width, height);
+                Graphics g = Graphics.FromImage(_bitmap);
+                g.DrawImage(bitmap, 0, 0, new Rectangle(200, 41, width, height), GraphicsUnit.Pixel);
                 // 保存图片
                 String Path = GetAssetsPath() + "/" + GetPicName();
-                bitmap.Save(Path);
-            };
+                _bitmap.Save(Path);
+                
+            // 否则绑定加载完成事件
+            } else {
+                // 先移除事件绑定的函数，防止重复绑定，叠加效果（重复截图）
+                ClearAllEvents(w, "DocumentCompleted");
+                // 绑定一个lambda表达式函数
+                w.DocumentCompleted += (sender, e) => {
+                    w.DrawToBitmap(bitmap, rectangle);
+                    // 保存图片
+                    String Path = GetAssetsPath() + "/" + GetPicName();
+                    bitmap.Save(Path);
+                };
+            }
         }
 
         /// <summary>
