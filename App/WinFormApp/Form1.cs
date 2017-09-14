@@ -37,6 +37,9 @@ namespace WinFormApp
             // 设置第二个tab为默认的显示项
             this.tabControl1.SelectedIndex = 3;
 
+            // 设置js和C#交互
+            this.webBrowser1.ObjectForScripting = this;
+
             // 设置webBrowser1不会弹出错误提示窗口。生产环境可以开启，开发环境就算了。提示窗口有助于定位错误
             //this.webBrowser1.ScriptErrorsSuppressed = true;
         }
@@ -73,14 +76,12 @@ namespace WinFormApp
         }
 
         private void button16_Click(object sender, EventArgs e)
-        {
-            this.webBrowser1.ObjectForScripting = this;
+        {            
             Functions.ExecScript(this.webBrowser1, "window.external.GetPic($('.geetest_widget')[0].getBoundingClientRect().left, $('.geetest_widget')[0].getBoundingClientRect().top)");
         }
 
         public void GetPic(int x, int y)
         {
-            Console.WriteLine(x.ToString() + " - " + y.ToString());
             Functions.CutPic(this.webBrowser1, x, y);
         }
 

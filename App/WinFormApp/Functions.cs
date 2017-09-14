@@ -146,7 +146,20 @@ namespace WinFormApp
 
         public static void Login(WebBrowser w, string username, string password)
         {
-            ExecScript(w, $"$('#username').val('{username}'); $('#password').val('{password}'); document.getElementById('loginsubmit').click();");
+            ExecScript(w, @"
+                $('#username').val('" + username + @"'); 
+                $('#password').val('" + password + @"'); 
+                document.getElementById('loginsubmit').click();
+                var geetest_item_img_is_load = false
+                $('img.geetest_item_img').onload = function () {geetest_item_img_is_load = true}
+                var s = setInterval(function() {
+                    if ($('.geetest_widget').is(':visible') && geetest_item_img_is_load) {        
+                        clearInterval(s);
+                        var g = $('.geetest_widget')[0].getBoundingClientRect();
+                        window.external.GetPic(g.left, g.top);
+                    }
+                }, 100)
+            ");
         }
     }
 }

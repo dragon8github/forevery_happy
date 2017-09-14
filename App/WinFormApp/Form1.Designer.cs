@@ -948,7 +948,7 @@
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(75, 23);
             this.button16.TabIndex = 7;
-            this.button16.Text = "计算坐标";
+            this.button16.Text = "截图";
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
@@ -989,6 +989,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(994, 529);
             this.webBrowser1.TabIndex = 2;
+            this.webBrowser1.Url = new System.Uri("http://www.228.com.cn/auth/login", System.UriKind.Absolute);
             // 
             // label19
             // 
