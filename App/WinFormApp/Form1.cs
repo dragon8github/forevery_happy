@@ -4,6 +4,7 @@ using FastVerCode;
 using System.Diagnostics;
 using Microsoft.Win32;
 
+
 namespace WinFormApp
 {
     public partial class Form1 : Form
@@ -58,20 +59,8 @@ namespace WinFormApp
                     Width = 1024,
                     Height = 768,
                 };
-                Functions.CutPic(wb);
-            }
-            catch (Exception ex) {
-                MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
-            }
-        }
-
-        private void button14_Click(object sender, EventArgs e)
-        {
-            try {
-                this.webBrowser1.Url = new Uri(this.textBox11.Text);
-                this.webBrowser1.DocumentCompleted += (_sender, _e) => {
-                    this.webBrowser1.Document.GetElementById("blog_nav_newpost").InvokeMember("click");
-                };
+                wb.ObjectForScripting = this;
+                Functions.ExecScript(wb, "window.external.MyMessageBox(123)");
             }
             catch (Exception ex) {
                 MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
@@ -80,7 +69,7 @@ namespace WinFormApp
 
         private void button15_Click(object sender, EventArgs e)
         {
-            Functions.Login(this.webBrowser1);
+            Functions.Login(this.webBrowser1, "18027059003", "ou826707");
         }
 
         private void button16_Click(object sender, EventArgs e)
@@ -93,6 +82,24 @@ namespace WinFormApp
         {
             Console.WriteLine(x.ToString() + " - " + y.ToString());
             Functions.CutPic(this.webBrowser1, x, y);
+        }
+
+        public void MyMessageBox(string message)
+        {
+            MessageBox.Show(message, "Fuck You");
+        }
+
+        private void textBox11_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+　　        {
+                try {
+                    this.webBrowser1.Url = new Uri(this.textBox11.Text);
+                }
+                catch (Exception ex) {
+                    MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
+                }
+            }
         }
     }
 }

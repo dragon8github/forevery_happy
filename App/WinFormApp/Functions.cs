@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
+
 namespace WinFormApp
 {
     class Functions
@@ -77,6 +78,27 @@ namespace WinFormApp
         }
 
         /// <summary>
+        /// 执行函数当WebBrowser对象加载完毕时
+        /// MD，这个Action硬是要填入一个参数，我又不知道什么好，觉得干脆继续返回一个一模一样的WebBrowser吧，没准以后需要对它进行变化。也挺好的
+        /// </summary>
+        /// <param name="action">待执行的函数</param>
+        /// <param name="w">WebBrowser对象</param>
+        public static void ExecActionWhenWebBrowserDocumentCompleted(Action<WebBrowser> action, WebBrowser w)
+        {
+            if (w.ReadyState == WebBrowserReadyState.Complete) {
+                action(w);
+            }
+            else {
+                // 先移除事件绑定的函数，防止重复绑定，叠加重复效果
+                ClearAllEvents(w, "DocumentCompleted");
+                // 绑定一个lambda表达式函数
+                w.DocumentCompleted += (sender, e) => {
+                    action(w);
+                };
+            }
+        }
+
+        /// <summary>
         /// 截取WebBrowser网页中的图片
         /// 默认的宽高就是验证码图片的size
         /// </summary>
@@ -96,8 +118,7 @@ namespace WinFormApp
             Bitmap bitmap = new Bitmap(full_width, full_height);
             Rectangle rectangle = new Rectangle(0, 0, full_width, full_height);
 
-            // 如果这个WebBrowser已经加载完毕，那么就直接执行截图
-            if (w.ReadyState == WebBrowserReadyState.Complete) {
+            ExecActionWhenWebBrowserDocumentCompleted(_w => {
                 w.DrawToBitmap(bitmap, rectangle);
                 Bitmap _bitmap = new Bitmap(width, height);
                 Graphics g = Graphics.FromImage(_bitmap);
@@ -105,39 +126,27 @@ namespace WinFormApp
                 // 保存图片
                 String Path = GetAssetsPath() + "/" + GetPicName();
                 _bitmap.Save(Path);
-            }
-            // 否则绑定DocumentCompleted事件
-            else {
-                // 先移除事件绑定的函数，防止重复绑定，叠加效果（重复截图）
-                ClearAllEvents(w, "DocumentCompleted");
-                // 绑定一个lambda表达式函数
-                w.DocumentCompleted += (sender, e) => {
-                    w.DrawToBitmap(bitmap, rectangle);
-                    Bitmap _bitmap = new Bitmap(width, height);
-                    Graphics g = Graphics.FromImage(_bitmap);
-                    g.DrawImage(bitmap, 0, 0, new Rectangle(x, y, width, height), GraphicsUnit.Pixel);
-                    // 保存图片
-                    String Path = GetAssetsPath() + "/" + GetPicName();
-                    _bitmap.Save(Path);
-                };
-            }
+            }, w);            
         }
 
         /// <summary>
         /// 执行js代码
         /// </summary>
         /// <param name="jsCode"></param>
-        public static void ExecScript(WebBrowser w,string jsCode)
+        public static void ExecScript(WebBrowser w, string jsCode)
         {
-            HtmlElement script = w.Document.CreateElement("script");
-            script.SetAttribute("type", "text/javascript");
-            script.SetAttribute("text", jsCode);
-            HtmlElement head = w.Document.Body.AppendChild(script);
+            ExecActionWhenWebBrowserDocumentCompleted(_w => {
+                HtmlElement script = w.Document.CreateElement("script");
+                script.SetAttribute("type", "text/javascript");
+                script.SetAttribute("text", jsCode);
+                HtmlElement head = w.Document.Body.AppendChild(script);    
+            }, w);
         }
 
-        public static void Login(WebBrowser w)
+
+        public static void Login(WebBrowser w, string username, string password)
         {
-            ExecScript(w, @"$('#username').val('18027059003');$('#password').val('ou826707');document.getElementById('loginsubmit').click()");
+            ExecScript(w, $"$('#username').val('{username}'); $('#password').val('{password}'); document.getElementById('loginsubmit').click();");
         }
     }
 }

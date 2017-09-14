@@ -108,15 +108,14 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button16 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.label19 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -930,7 +929,6 @@
             // 
             this.tabPage4.Controls.Add(this.button16);
             this.tabPage4.Controls.Add(this.button15);
-            this.tabPage4.Controls.Add(this.button14);
             this.tabPage4.Controls.Add(this.button13);
             this.tabPage4.Controls.Add(this.button12);
             this.tabPage4.Controls.Add(this.webBrowser1);
@@ -944,6 +942,16 @@
             this.tabPage4.Text = "webBrowser测试";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(922, 7);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 7;
+            this.button16.Text = "计算坐标";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
             // button15
             // 
             this.button15.Location = new System.Drawing.Point(841, 7);
@@ -954,29 +962,19 @@
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(759, 7);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 5;
-            this.button14.Text = "点击";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(673, 6);
+            this.button13.Location = new System.Drawing.Point(760, 6);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 4;
-            this.button13.Text = "截图";
+            this.button13.Text = "虚拟";
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(585, 6);
+            this.button12.Location = new System.Drawing.Point(672, 6);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(75, 23);
             this.button12.TabIndex = 3;
@@ -1005,9 +1003,10 @@
             // 
             this.textBox11.Location = new System.Drawing.Point(99, 9);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(467, 21);
+            this.textBox11.Size = new System.Drawing.Size(567, 21);
             this.textBox11.TabIndex = 0;
             this.textBox11.Text = "http://www.228.com.cn/auth/login";
+            this.textBox11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox11_KeyDown);
             // 
             // button1
             // 
@@ -1018,16 +1017,6 @@
             this.button1.Text = "众联打码测试";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(922, 7);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 23);
-            this.button16.TabIndex = 7;
-            this.button16.Text = "计算坐标";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // Form1
             // 
@@ -1169,7 +1158,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
     }
