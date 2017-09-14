@@ -86,7 +86,6 @@ namespace WinFormApp
         private void button16_Click(object sender, EventArgs e)
         {
             this.webBrowser1.ObjectForScripting = this;
-            //Functions.ExecScript(this.webBrowser1, @"alert($('.geetest_widget')[0].getBoundingClientRect().top)");
             Functions.ExecScript(this.webBrowser1, "window.external.GetPic($('.geetest_widget')[0].getBoundingClientRect().left, $('.geetest_widget')[0].getBoundingClientRect().top)");
         }
 

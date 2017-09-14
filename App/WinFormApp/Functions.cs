@@ -78,36 +78,47 @@ namespace WinFormApp
 
         /// <summary>
         /// 截取WebBrowser网页中的图片
+        /// 默认的宽高就是验证码图片的size
         /// </summary>
         /// <param name="webBrowser">WebBrowser实例对象</param>
         /// <param name="width">宽</param>
         /// <param name="height">高</param>
-        public static void CutPic(WebBrowser w,int x = 0, int y = 0, int width = 325, int height = 413)
+        public static void CutPic(WebBrowser w, int x = 0, int y = 0, int width = 325, int height = 413)
         {
-            //Console.WriteLine(x.ToString() + "-" + y.ToString() + "-" + width.ToString() + "-" + height.ToString());
-            Bitmap bitmap = new Bitmap(width, height);
-            Rectangle rectangle = new Rectangle(0, 0, 1024, 768);
+            // 《问题》：由于 WebBrowser.DrawToBitmap 截图时,偏移的参数设置居然是内边距！这完全不是我想要的。
+            // 《解决方法》：二次截图
+            // 1、先对WebBrowser进行满屏截图，并且生成一个Bitmap。
+            // 2、然后再生成一个空白的Bitmap，宽高设置当然是入参的 width 和 height。
+            // 3、使用Graphics第一个全屏图片Bitmap（Bitmap类型可以当Image类型使用）进行二次截图，再把结果放入空白的Bitmap中
+            // 这时候发现偏移参数正常了。
+            int full_width = w.Width;
+            int full_height = w.Height;
+            Bitmap bitmap = new Bitmap(full_width, full_height);
+            Rectangle rectangle = new Rectangle(0, 0, full_width, full_height);
 
             // 如果这个WebBrowser已经加载完毕，那么就直接执行截图
             if (w.ReadyState == WebBrowserReadyState.Complete) {
                 w.DrawToBitmap(bitmap, rectangle);
                 Bitmap _bitmap = new Bitmap(width, height);
                 Graphics g = Graphics.FromImage(_bitmap);
-                g.DrawImage(bitmap, 0, 0, new Rectangle(200, 41, width, height), GraphicsUnit.Pixel);
+                g.DrawImage(bitmap, 0, 0, new Rectangle(x, y, width, height), GraphicsUnit.Pixel);
                 // 保存图片
                 String Path = GetAssetsPath() + "/" + GetPicName();
                 _bitmap.Save(Path);
-                
-            // 否则绑定加载完成事件
-            } else {
+            }
+            // 否则绑定DocumentCompleted事件
+            else {
                 // 先移除事件绑定的函数，防止重复绑定，叠加效果（重复截图）
                 ClearAllEvents(w, "DocumentCompleted");
                 // 绑定一个lambda表达式函数
                 w.DocumentCompleted += (sender, e) => {
                     w.DrawToBitmap(bitmap, rectangle);
+                    Bitmap _bitmap = new Bitmap(width, height);
+                    Graphics g = Graphics.FromImage(_bitmap);
+                    g.DrawImage(bitmap, 0, 0, new Rectangle(x, y, width, height), GraphicsUnit.Pixel);
                     // 保存图片
                     String Path = GetAssetsPath() + "/" + GetPicName();
-                    bitmap.Save(Path);
+                    _bitmap.Save(Path);
                 };
             }
         }
