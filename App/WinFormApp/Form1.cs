@@ -29,7 +29,8 @@ namespace WinFormApp
             string username = "dragon8dama";
             string pwd = "202063sbmP";
             string softKey = "dragon8dama";
-            string returnMess = VerCode.RecYZM_A_2("c:\\getimage.png", 1303, 2, 6, username, pwd, softKey);
+            string returnMess = VerCode.RecYZM_A_2("c:\\getimage.jpg", 1303, 2, 6, username, pwd, softKey);
+            Console.WriteLine(returnMess);
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -18,6 +18,11 @@ namespace WinFormApp
             return Convert.ToInt64(ts.TotalMilliseconds).ToString();
         }
 
+        public static string GetUUID(string type = "")
+        {
+            return Guid.NewGuid().ToString(type);
+        }
+
         /// <summary>
         ///  查看该路径是否存在，如果不存在，则创建这个文件夹，如果存在则什么都不做
         /// </summary>
@@ -44,7 +49,7 @@ namespace WinFormApp
         /// </summary>
         /// <returns></returns>
         public static string GetPicName(string ext = "jpg") {
-            return GetTimeStamp() + "." + ext;
+            return GetUUID() + "." + ext;
         }
 
         /// <summary>  
@@ -105,7 +110,7 @@ namespace WinFormApp
         /// <param name="webBrowser">WebBrowser实例对象</param>
         /// <param name="width">宽</param>
         /// <param name="height">高</param>
-        public static void CutPic(WebBrowser w, int x = 0, int y = 0, int width = 325, int height = 413)
+        public static void CutPic(WebBrowser w, int x = 0, int y = 0, int width = 315, int height = 350)
         {
             // 《问题》：由于 WebBrowser.DrawToBitmap 截图时,偏移的参数设置居然是内边距！这完全不是我想要的。
             // 《解决方法》：二次截图
@@ -143,22 +148,29 @@ namespace WinFormApp
             }, w);
         }
 
-
+        /// <summary>
+        /// 登录
+        /// 之所以setTimeout是因为验证码图片容器.geetest_panel_box 动画需要500秒才加载完成。
+        /// 而轮训setInterval之所以设置1秒，也是有原因的。如果间隔太短很可能造成截图问题。
+        /// </summary>
+        /// <param name="w"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
         public static void Login(WebBrowser w, string username, string password)
         {
             ExecScript(w, @"
                 $('#username').val('" + username + @"'); 
                 $('#password').val('" + password + @"'); 
                 document.getElementById('loginsubmit').click();
-                var geetest_item_img_is_load = false
-                $('img.geetest_item_img').onload = function () {geetest_item_img_is_load = true}
                 var s = setInterval(function() {
-                    if ($('.geetest_widget').is(':visible') && geetest_item_img_is_load) {        
+                    if ($('.geetest_widget').is(':visible') && $('.geetest_item_img').length && $('.geetest_item_img')[0].complete) {  
                         clearInterval(s);
                         var g = $('.geetest_widget')[0].getBoundingClientRect();
-                        window.external.GetPic(g.left, g.top);
+                        setTimeout(function () {                            
+                            window.external.GetPic(g.left, g.top);
+                        }, 500);                        
                     }
-                }, 100)
+                }, 800)
             ");
         }
     }
