@@ -1008,7 +1008,7 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(649, 20);
             this.comboBox3.TabIndex = 7;
-            this.comboBox3.Text = "http://www.baidu.com";
+            this.comboBox3.Text = "http://www.228.com.cn/auth/login";
             // 
             // Form1
             // 

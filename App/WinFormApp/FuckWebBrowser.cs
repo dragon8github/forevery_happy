@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WinFormApp
@@ -28,10 +29,19 @@ namespace WinFormApp
         public void Login(string username, string password)
         {
             ExecScript(@"
-                //$('#username').val('" + username + @"'); 
-                //$('#password').val('" + password + @"'); 
-                //document.getElementById('loginsubmit').click(); 
-                window.external.CutPic(0, 0, 1024, 768);
+                $('#username').val('" + username + @"'); 
+                $('#password').val('" + password + @"'); 
+                document.getElementById('loginsubmit').click(); 
+                setTimeout(function () {
+                    $('.geetest_panel').css({'display':'block','opacity':'1'})
+                     //alert($('.geetest_panel').size());
+                     //alert($('.geetest_panel').is(':visible'));
+                    alert($('.geetest_panel_box').size());
+                    alert($('.geetest_panel_box').html());
+                     window.external.CutPic(0, 0, 1024, 768);
+                     // .geetest_panel_box
+                }, 5000)
+               
 
                 //$('#username').val('" + username + @"'); 
                 //$('#password').val('" + password + @"'); 
@@ -115,7 +125,6 @@ namespace WinFormApp
            
             ExecActionWhenWebBrowserDocumentCompleted(_w => {
                 _w.DrawToBitmap(bitmap, rectangle);
-                bitmap.Save(Functions.GetAssetsPath() + "/" + Functions.GetPicName());
                 Bitmap _bitmap = new Bitmap(width, height);
                 Graphics g = Graphics.FromImage(_bitmap);
                 g.DrawImage(bitmap, 0, 0, new Rectangle(x, y, width, height), GraphicsUnit.Pixel);

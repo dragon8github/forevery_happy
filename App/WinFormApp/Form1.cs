@@ -60,8 +60,8 @@ namespace WinFormApp
 
         private void button15_Click(object sender, EventArgs e)
         {
-            FuckWebBrowser fuck = new FuckWebBrowser(this.webBrowser1);
-            //FuckWebBrowser fuck = new FuckWebBrowser(FuckWebBrowser.CreateWebBrowser(this.textBox11.Text));
+            //FuckWebBrowser fuck = new FuckWebBrowser(this.webBrowser1);
+            FuckWebBrowser fuck = new FuckWebBrowser(FuckWebBrowser.CreateWebBrowser(this.comboBox3.Text));
             fuck.Login("18027059003", "ou826707");
         }
 
