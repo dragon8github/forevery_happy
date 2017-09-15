@@ -6,10 +6,12 @@ using System.Windows.Forms;
 
 namespace WinFormApp
 {
-    class FuckWebBrowser
+    public class FuckWebBrowser
     {
         WebBrowser w;
+
         public FuckWebBrowser(WebBrowser w) {
+            w.ObjectForScripting = this;
             this.w = w;
         }
 
@@ -31,12 +33,21 @@ namespace WinFormApp
                     if ($('.geetest_widget').is(':visible') && $('.geetest_item_img').length && $('.geetest_item_img')[0].complete) {  
                         clearInterval(s);
                         var g = $('.geetest_widget')[0].getBoundingClientRect();
-                        setTimeout(function () {                            
-                            window.external.GetPic(g.left, g.top);
+                        setTimeout(function () {
+                            window.external.CutPic(g.left, g.top);
                         }, 500);                        
                     }
                 }, 800)
             ");
+        }
+
+        /// <summary>
+        /// 调试js专用交互函数
+        /// </summary>
+        /// <param name="message"></param>
+        public void MyMessageBox(string message)
+        {
+            MessageBox.Show(message, "Fuck Youuuuuuuuuu");
         }
 
         /// <summary>
@@ -65,7 +76,7 @@ namespace WinFormApp
         /// 执行js代码
         /// </summary>
         /// <param name="jsCode"></param>
-        private void ExecScript(string jsCode)
+        public void ExecScript(string jsCode)
         {
             ExecActionWhenWebBrowserDocumentCompleted(_w => {
                 HtmlElement script = _w.Document.CreateElement("script");
@@ -83,7 +94,7 @@ namespace WinFormApp
         /// <param name="webBrowser">WebBrowser实例对象</param>
         /// <param name="width">宽</param>
         /// <param name="height">高</param>
-        private void CutPic(int x = 0, int y = 0, int width = 315, int height = 350)
+        public void CutPic(int x = 0, int y = 0, int width = 315, int height = 350)
         {
             // 《问题》：由于 WebBrowser.DrawToBitmap 截图时,偏移的参数设置居然是内边距！这完全不是我想要的。
             // 《解决方法》：二次截图

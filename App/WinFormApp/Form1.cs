@@ -38,9 +38,6 @@ namespace WinFormApp
             // 设置第二个tab为默认的显示项
             this.tabControl1.SelectedIndex = 3;
 
-            // 设置js和C#交互
-            this.webBrowser1.ObjectForScripting = this;
-
             // 设置webBrowser1不会弹出错误提示窗口。生产环境可以开启，开发环境就算了。提示窗口有助于定位错误
             //this.webBrowser1.ScriptErrorsSuppressed = true;
         }
@@ -57,41 +54,16 @@ namespace WinFormApp
 
         private void button13_Click(object sender, EventArgs e)
         {
-            try {
-                WebBrowser wb =  Functions.CreateWebBrowser(this.textBox11.Text);
-                wb.ObjectForScripting = this;
-                Functions.ExecScript(wb, "window.external.MyMessageBox(123)");
-            }
-            catch (Exception ex) {
-                MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
-            }
+            FuckWebBrowser fuck = new FuckWebBrowser(FuckWebBrowser.CreateWebBrowser(this.textBox11.Text));
+            fuck.ExecScript("window.external.MyMessageBox(123)");
         }
 
         private void button15_Click(object sender, EventArgs e)
         {
-            WebBrowser wb = Functions.CreateWebBrowser(this.textBox11.Text);
-            wb.ObjectForScripting = this;
-            Functions.Login(wb, "18027059003", "ou826707");
-        }
-
-        private void button16_Click(object sender, EventArgs e)
-        {            
-            Functions.ExecScript(this.webBrowser1, "window.external.GetPic($('.geetest_widget')[0].getBoundingClientRect().left, $('.geetest_widget')[0].getBoundingClientRect().top)");
-        }
-
-        public void GetPic(int x, int y)
-        {
-            Functions.CutPic(this.webBrowser1, x, y);
-        }
-
-        /// <summary>
-        /// 调试js专用交互函数
-        /// </summary>
-        /// <param name="message"></param>
-        public void MyMessageBox(string message)
-        {
-            MessageBox.Show(message, "Fuck You");
-        }
+            //FuckWebBrowser fuck = new FuckWebBrowser(this.webBrowser1);
+            FuckWebBrowser fuck = new FuckWebBrowser(FuckWebBrowser.CreateWebBrowser(this.textBox11.Text));
+            fuck.Login("18027059003", "ou826707");
+        }       
 
         private void textBox11_KeyDown(object sender, KeyEventArgs e)
         {
