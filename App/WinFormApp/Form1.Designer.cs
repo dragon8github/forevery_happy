@@ -113,8 +113,8 @@
             this.button12 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -926,12 +926,12 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.comboBox3);
             this.tabPage4.Controls.Add(this.button15);
             this.tabPage4.Controls.Add(this.button13);
             this.tabPage4.Controls.Add(this.button12);
             this.tabPage4.Controls.Add(this.webBrowser1);
             this.tabPage4.Controls.Add(this.label19);
-            this.tabPage4.Controls.Add(this.textBox11);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -977,7 +977,6 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(994, 529);
             this.webBrowser1.TabIndex = 2;
-            this.webBrowser1.Url = new System.Uri("http://www.228.com.cn/auth/login", System.UriKind.Absolute);
             // 
             // label19
             // 
@@ -988,15 +987,6 @@
             this.label19.TabIndex = 1;
             this.label19.Text = "请输入测试URL：";
             // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(99, 9);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(648, 21);
-            this.textBox11.TabIndex = 0;
-            this.textBox11.Text = "http://www.228.com.cn/auth/login";
-            this.textBox11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox11_KeyDown);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(943, 14);
@@ -1006,6 +996,19 @@
             this.button1.Text = "众联打码测试";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "http://www.228.com.cn/auth/login",
+            "http://www.baidu.com",
+            "http://www.cnblogs.com/cylee"});
+            this.comboBox3.Location = new System.Drawing.Point(98, 8);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(649, 20);
+            this.comboBox3.TabIndex = 7;
+            this.comboBox3.Text = "http://www.baidu.com";
             // 
             // Form1
             // 
@@ -1145,9 +1148,9 @@
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }
 
