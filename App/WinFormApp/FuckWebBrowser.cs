@@ -40,10 +40,32 @@ namespace WinFormApp
         }
 
         /// <summary>
+        /// 创建一个WebBrowser
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public static WebBrowser CreateWebBrowser(string url = "", int width = 1024, int height = 768)
+        {
+            WebBrowser w = new WebBrowser() {
+                Width = width,
+                Height = height
+            };
+            try {
+                w.Url = new Uri(url);
+            }
+            catch (Exception ex) {
+                MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
+            }
+            return w;
+        }
+
+        /// <summary>
         /// 执行js代码
         /// </summary>
         /// <param name="jsCode"></param>
-        public void ExecScript(string jsCode)
+        private void ExecScript(string jsCode)
         {
             ExecActionWhenWebBrowserDocumentCompleted(_w => {
                 HtmlElement script = _w.Document.CreateElement("script");
@@ -61,7 +83,7 @@ namespace WinFormApp
         /// <param name="webBrowser">WebBrowser实例对象</param>
         /// <param name="width">宽</param>
         /// <param name="height">高</param>
-        public void CutPic(int x = 0, int y = 0, int width = 315, int height = 350)
+        private void CutPic(int x = 0, int y = 0, int width = 315, int height = 350)
         {
             // 《问题》：由于 WebBrowser.DrawToBitmap 截图时,偏移的参数设置居然是内边距！这完全不是我想要的。
             // 《解决方法》：二次截图
@@ -83,28 +105,6 @@ namespace WinFormApp
                 String Path = Functions.GetAssetsPath() + "/" + Functions.GetPicName();
                 _bitmap.Save(Path);
             });
-        }
-
-        /// <summary>
-        /// 创建一个WebBrowser
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <returns></returns>
-        public static WebBrowser CreateWebBrowser(string url = "", int width = 1024, int height = 768)
-        {
-            WebBrowser w = new WebBrowser() {
-                Width = width,
-                Height = height
-            };
-            try {
-                w.Url = new Uri(url);
-            }
-            catch (Exception ex) {
-                MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
-            }
-            return w;
         }
 
         /// <summary>
