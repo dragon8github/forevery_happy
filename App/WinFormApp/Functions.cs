@@ -36,6 +36,27 @@ namespace WinFormApp
         }
 
         /// <summary>
+        /// 创建一个WebBrowser
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public static WebBrowser CreateWebBrowser(string url = "", int width = 1024, int height = 768) {
+            WebBrowser w = new WebBrowser() {
+                Width = width,
+                Height = height
+            };
+            try {
+                w.Url = new Uri(url);
+            }
+            catch (Exception ex) {
+                MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
+            }
+            return w;
+        }
+
+        /// <summary>
         /// 是否存在资源路径assets，如果不存在则创建，返回路径
         /// </summary>
         /// <returns></returns>
@@ -57,7 +78,7 @@ namespace WinFormApp
         /// </summary>  
         /// <param name="objectHasEvents">拥有事件的实例</param>  
         /// <param name="eventName">事件名称</param>  
-        private static void ClearAllEvents(object objectHasEvents, string eventName)
+        public static void ClearAllEvents(object objectHasEvents, string eventName)
         {
             if (objectHasEvents == null) {
                 return;
@@ -161,7 +182,7 @@ namespace WinFormApp
             ExecScript(w, @"
                 $('#username').val('" + username + @"'); 
                 $('#password').val('" + password + @"'); 
-                document.getElementById('loginsubmit').click();
+                document.getElementById('loginsubmit').click();               
                 var s = setInterval(function() {
                     if ($('.geetest_widget').is(':visible') && $('.geetest_item_img').length && $('.geetest_item_img')[0].complete) {  
                         clearInterval(s);

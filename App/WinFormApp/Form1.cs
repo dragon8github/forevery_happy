@@ -58,11 +58,7 @@ namespace WinFormApp
         private void button13_Click(object sender, EventArgs e)
         {
             try {
-                WebBrowser wb = new WebBrowser {
-                    Url = new Uri(this.textBox11.Text),
-                    Width = 1024,
-                    Height = 768,
-                };
+                WebBrowser wb =  Functions.CreateWebBrowser(this.textBox11.Text);
                 wb.ObjectForScripting = this;
                 Functions.ExecScript(wb, "window.external.MyMessageBox(123)");
             }
@@ -73,7 +69,9 @@ namespace WinFormApp
 
         private void button15_Click(object sender, EventArgs e)
         {
-            Functions.Login(this.webBrowser1, "18027059003", "ou826707");
+            WebBrowser wb = Functions.CreateWebBrowser(this.textBox11.Text);
+            wb.ObjectForScripting = this;
+            Functions.Login(wb, "18027059003", "ou826707");
         }
 
         private void button16_Click(object sender, EventArgs e)
@@ -86,6 +84,10 @@ namespace WinFormApp
             Functions.CutPic(this.webBrowser1, x, y);
         }
 
+        /// <summary>
+        /// 调试js专用交互函数
+        /// </summary>
+        /// <param name="message"></param>
         public void MyMessageBox(string message)
         {
             MessageBox.Show(message, "Fuck You");
