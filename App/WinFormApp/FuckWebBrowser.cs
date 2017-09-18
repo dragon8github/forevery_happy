@@ -28,33 +28,20 @@ namespace WinFormApp
         /// <param name="password"></param>
         public void Login(string username, string password)
         {
-            ExecScript(@"
+            ExecScript(@"     
                 $('#username').val('" + username + @"'); 
                 $('#password').val('" + password + @"'); 
                 document.getElementById('loginsubmit').click(); 
-                setTimeout(function () {
-                    $('.geetest_panel').css({'display':'block','opacity':'1'})
-                     //alert($('.geetest_panel').size());
-                     //alert($('.geetest_panel').is(':visible'));
-                    alert($('.geetest_panel_box').size());
-                    alert($('.geetest_panel_box').html());
-                     window.external.CutPic(0, 0, 1024, 768);
-                     // .geetest_panel_box
-                }, 5000)
-               
-
-                //$('#username').val('" + username + @"'); 
-                //$('#password').val('" + password + @"'); 
-                //document.getElementById('loginsubmit').click(); 
-                //var s = setInterval(function() {                    
-                //    if ($('.geetest_widget').is(':visible') && $('.geetest_item_img').length && $('.geetest_item_img')[0].complete) {  
-                //        clearInterval(s);
-                //        var g = $('.geetest_widget')[0].getBoundingClientRect();
-                //        setTimeout(function () {
-                //            window.external.CutPic(g.left, g.top);
-                //        }, 500);                        
-                //    }
-                //}, 800)
+                var s = setInterval(function() {
+                    document.getElementById('loginsubmit').click(); 
+                    if ($('.geetest_widget').is(':visible') && $('.geetest_item_img').length && $('.geetest_item_img')[0].complete) {  
+                        clearInterval(s);
+                        $('.geetest_panel_box').css({left:0,top:0,transform:'translate(0, 0)'});
+                        setTimeout(function () {   
+                            window.external.CutPic();
+                        }, 500);                        
+                    }
+                }, 100)
             ");
         }
 
