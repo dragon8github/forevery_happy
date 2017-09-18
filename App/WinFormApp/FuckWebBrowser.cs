@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using FastVerCode;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,8 +39,20 @@ namespace WinFormApp
                         clearInterval(s);
                         $('.geetest_panel_box').css({left:0,top:0,transform:'translate(0, 0)'});
                         setTimeout(function () {   
-                            window.external.CutPic();
-                        }, 500);                        
+                           var path = window.external.CutPic();
+                           var returnMess = window.external.SendImage(path);
+                           var arr = returnMess.split('|');
+                           for (var i = 0; i < arr.length - 2; i++) {
+                               var _arr = arr[i].split(',');
+                               window.alert(_arr[0]+'|'+_arr[1]);
+                               //var ev = document.createEvent('HTMLEvents'); 
+                               //ev.clientX = _arr[0];
+                               //ev.clientY = _arr[1];
+                               //ev.initEvent('click', false, true); 
+                               //$('.geetest_item.geetest_big_item')[0].dispatchEvent(ev);
+                           }    
+                           window.external.CutPic();
+                        }, 500);
                     }
                 }, 100)
             ");
@@ -49,9 +62,22 @@ namespace WinFormApp
         /// 调试js专用交互函数
         /// </summary>
         /// <param name="message"></param>
-        public void Msg(string message)
+        public string Msg(string message)
         {
-            MessageBox.Show(message, "Fuck Youuuuuuuuuu");
+            MessageBox.Show(message, "Fuck You");
+            return "123";
+        }
+
+        /// <summary>
+        /// 发送图片给打码平台
+        /// </summary>
+        /// <param name="path"></param>
+        public string SendImage(string path)
+        {
+            string username = "dragon8dama";
+            string pwd = "202063sbmP";
+            string softKey = "dragon8dama";
+            return VerCode.RecYZM_A_2(path, 1303, 2, 6, username, pwd, softKey);
         }
 
         /// <summary>
@@ -97,7 +123,7 @@ namespace WinFormApp
         /// <param name="y"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public void CutPic(int x = 0, int y = 0, int width = 315, int height = 350)
+        public string CutPic(int x = 0, int y = 0, int width = 315, int height = 350)
         {
             // 《问题》：由于 WebBrowser.DrawToBitmap 截图时,偏移的参数设置居然是内边距！这完全不是我想要的。
             // 《解决方法》：二次截图
@@ -109,16 +135,18 @@ namespace WinFormApp
             int full_height = w.Height;
             Bitmap bitmap = new Bitmap(full_width, full_height);
             Rectangle rectangle = new Rectangle(0, 0, full_width, full_height);
-           
+            String Path = Functions.GetAssetsPath() + "/" + Functions.GetPicName();
+
             ExecActionWhenWebBrowserDocumentCompleted(_w => {
                 _w.DrawToBitmap(bitmap, rectangle);
                 Bitmap _bitmap = new Bitmap(width, height);
                 Graphics g = Graphics.FromImage(_bitmap);
                 g.DrawImage(bitmap, 0, 0, new Rectangle(x, y, width, height), GraphicsUnit.Pixel);
-                // 保存图片
-                String Path = Functions.GetAssetsPath() + "/" + Functions.GetPicName();
+                // 保存图片                
                 _bitmap.Save(Path);
             });
+
+            return Path;
         }
 
         /// <summary>
