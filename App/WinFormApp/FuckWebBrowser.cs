@@ -1,11 +1,6 @@
 ﻿using FastVerCode;
-using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace WinFormApp
@@ -16,14 +11,11 @@ namespace WinFormApp
 
         public FuckWebBrowser(WebBrowser w) {
             w.ObjectForScripting = this;
-            w.ScrollBarsEnabled = false;
             this.w = w;
         }
 
         /// <summary>
         /// 登录
-        /// 之所以setTimeout是因为验证码图片容器.geetest_panel_box 动画需要500秒才加载完成。
-        /// 而轮训setInterval之所以设置1秒，也是有原因的。如果间隔太短很可能造成截图问题。
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
@@ -38,20 +30,26 @@ namespace WinFormApp
                     if ($('.geetest_widget').is(':visible') && $('.geetest_item_img').length && $('.geetest_item_img')[0].complete) {  
                         clearInterval(s);
                         $('.geetest_panel_box').css({left:0,top:0,transform:'translate(0, 0)'});
-                        setTimeout(function () {   
+                        setTimeout(function () {
+                            //var ev = document.createEvent('HTMLEvents'); 
+                            //ev.clientX = 100;
+                            //ev.clientY = 100;
+                            //ev.initEvent('click', false, true); 
+                            //$('.geetest_item.geetest_big_item')[0].dispatchEvent(ev);
+
                            var path = window.external.CutPic();
                            var returnMess = window.external.SendImage(path);
                            var arr = returnMess.split('|');
                            for (var i = 0; i < arr.length - 2; i++) {
                                var _arr = arr[i].split(',');
                                window.alert(_arr[0]+'|'+_arr[1]);
-                               //var ev = document.createEvent('HTMLEvents'); 
-                               //ev.clientX = _arr[0];
-                               //ev.clientY = _arr[1];
-                               //ev.initEvent('click', false, true); 
-                               //$('.geetest_item.geetest_big_item')[0].dispatchEvent(ev);
-                           }    
-                           window.external.CutPic();
+                               var ev = document.createEvent('HTMLEvents'); 
+                               ev.clientX = parseInt(_arr[0]);
+                               ev.clientY = parseInt(_arr[1]);
+                               ev.initEvent('click', false, true); 
+                               $('.geetest_item.geetest_big_item')[0].dispatchEvent(ev);
+                           }
+                          setTimeout(function () {window.external.CutPic(0, 0, 1024, 768);}, 3000)
                         }, 500);
                     }
                 }, 100)
@@ -62,10 +60,9 @@ namespace WinFormApp
         /// 调试js专用交互函数
         /// </summary>
         /// <param name="message"></param>
-        public string Msg(string message)
+        public void Msg(string message)
         {
             MessageBox.Show(message, "Fuck You");
-            return "123";
         }
 
         /// <summary>
@@ -129,7 +126,7 @@ namespace WinFormApp
             // 《解决方法》：二次截图
             // 1、先对WebBrowser进行满屏截图，并且生成一个Bitmap。
             // 2、然后再生成一个空白的Bitmap，宽高设置当然是入参的 width 和 height。
-            // 3、使用Graphics第一个全屏图片Bitmap（Bitmap类型可以当Image类型使用）进行二次截图，再把结果放入空白的Bitmap中
+            // 3、使用Graphics将第一个全屏图片Bitmap（Bitmap类型可以当Image类型使用）进行二次截图，再把结果放入空白的Bitmap中
             // 这时候发现偏移参数正常了。
             int full_width = w.Width;
             int full_height = w.Height;

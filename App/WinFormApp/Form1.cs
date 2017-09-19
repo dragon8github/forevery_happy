@@ -24,6 +24,15 @@ namespace WinFormApp
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // 设置第二个tab为默认的显示项
+            this.tabControl1.SelectedIndex = 3;
+
+            // 设置webBrowser1不会弹出错误提示窗口。生产环境可以开启，开发环境就算了。提示窗口有助于定位错误
+            //this.webBrowser1.ScriptErrorsSuppressed = true;
+        }
+
         private void Button1_Click(object sender, EventArgs e)
         {
             string username = "dragon8dama";
@@ -31,16 +40,7 @@ namespace WinFormApp
             string softKey = "dragon8dama";
             string returnMess = VerCode.RecYZM_A_2("c:\\getimage.jpg", 1303, 2, 6, username, pwd, softKey);
             Console.WriteLine(returnMess);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // 设置第二个tab为默认的显示项
-            this.tabControl1.SelectedIndex = 3;
-
-            // 设置webBrowser1不会弹出错误提示窗口。生产环境可以开启，开发环境就算了。提示窗口有助于定位错误
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-        }
+        }        
 
         private void button12_Click(object sender, EventArgs e)
         {
@@ -54,8 +54,9 @@ namespace WinFormApp
 
         private void button13_Click(object sender, EventArgs e)
         {
+            //FuckWebBrowser fuck = new FuckWebBrowser(this.webBrowser1);
             FuckWebBrowser fuck = new FuckWebBrowser(FuckWebBrowser.CreateWebBrowser(this.comboBox3.Text));
-            fuck.ExecScript("window.external.Msg(123)");
+            fuck.ExecScript("window.external.Msg(123);");
         }
 
         private void button15_Click(object sender, EventArgs e)
