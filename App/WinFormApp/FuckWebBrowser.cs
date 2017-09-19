@@ -30,13 +30,8 @@ namespace WinFormApp
                     if ($('.geetest_widget').is(':visible') && $('.geetest_item_img').length && $('.geetest_item_img')[0].complete) {  
                         clearInterval(s);
                         $('.geetest_panel_box').css({left:0,top:0,transform:'translate(0, 0)'});
+                        $('.geetest_commit_tip').attr('id','geetest_commit_tip');
                         setTimeout(function () {
-                            //var ev = document.createEvent('HTMLEvents'); 
-                            //ev.clientX = 100;
-                            //ev.clientY = 100;
-                            //ev.initEvent('click', false, true); 
-                            //$('.geetest_item.geetest_big_item')[0].dispatchEvent(ev);
-
                            var path = window.external.CutPic();
                            var returnMess = window.external.SendImage(path);
                            var arr = returnMess.split('|');
@@ -49,6 +44,7 @@ namespace WinFormApp
                                ev.initEvent('click', false, true); 
                                $('.geetest_item.geetest_big_item')[0].dispatchEvent(ev);
                            }
+                          //document.getElementById('geetest_commit_tip').click(); 
                           setTimeout(function () {window.external.CutPic(0, 0, 1024, 768);}, 3000)
                         }, 500);
                     }
