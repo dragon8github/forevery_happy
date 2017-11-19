@@ -3,6 +3,7 @@ using CsharpHttpHelper.Enum;
 using System;
 using System.Windows.Forms;
 using WinFormApp.Models;
+using HtmlAgilityPack;
 
 namespace WinFormApp
 {
@@ -46,6 +47,7 @@ namespace WinFormApp
         {
             string cookie = _fuck.Login("13713332652", "202063sb");
 
+            // 测试是否登录成功
             HttpItem item = new HttpItem() {
                 URL = "https://www.228.com.cn/personorders/myorder.html",
                 Method = "GET",
@@ -56,6 +58,25 @@ namespace WinFormApp
             };
             HttpResult result = _http.GetHtml(item);
             string html = result.Html;
+            MessageBox.Show(html);
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            string cookie = _fuck.Login("13713332652", "202063sb");
+            string url = textBox11.Text;
+            HttpItem item = new HttpItem() {
+                URL= url,
+                Method="GET",
+                Cookie = cookie,
+            };
+            HttpResult result = _http.GetHtml(item);
+            string html = result.Html;
+            var htmlDoc = new HtmlAgilityPack.HtmlDocument();
+            htmlDoc.LoadHtml(html);
+            string xpath = "//*[@id=\"Jprice\"]/li[1]";
+            var value = htmlDoc.DocumentNode.SelectSingleNode(xpath);
+            string n = value.Attributes["n"].Value;
             MessageBox.Show(html);
         }
     }

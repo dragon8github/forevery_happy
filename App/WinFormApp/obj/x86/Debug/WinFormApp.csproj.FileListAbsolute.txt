@@ -21,3 +21,6 @@ C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.cspr
 C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.exe
 C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.pdb
 C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csprojResolveAssemblyReference.cache
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\bin\Debug\HtmlAgilityPack.xml

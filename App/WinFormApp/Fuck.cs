@@ -12,9 +12,12 @@ namespace WinFormApp
     {
         HttpHelper http;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public Fuck()
         {
-            // 实例化
+            // 实例化HttpHelper
             http = new HttpHelper();
         }
 
@@ -35,6 +38,10 @@ namespace WinFormApp
             return result.Html;
         }
 
+        /// <summary>
+        ///  获取极验结果
+        /// </summary>
+        /// <returns></returns>
         public Jiyan GetJiyan()
         {
             string geetest_code = GetGeetet();
@@ -73,17 +80,21 @@ namespace WinFormApp
         /// <summary>
         /// 获取cookie
         /// 神坑记录：http://www.sufeinet.com/forum.php?mod=viewthread&tid=9999
-        /// 必须设置Allowautoredirect = false才可以获取redirectUrl(获取302跳转URl)
-        /// 某些场合必须设置为true才合适，但某些场合必须设置为false.
+        /// 必须设置 Allowautoredirect = false 才可以获取redirectUrl(获取302跳转URl)，虽然默认就是为false。
+        /// 某些场合必须设置为 true 才合适，但某些场合必须设置为false。
         /// 譬如我登录之后，就要获取该页面的cookie，但由于跳转，到导致获取的是跳转后的Cookie，是错误的。
-        /// 所以应该设置为false。可以先获取cookie，再跳转。坑死了。
+        /// 所以应该设置为false。可以先获取cookie，再跳转。一开始我手贱设置为true。结果思路是错的，坑了好久！
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
         public string Login(string username, string password)
         {
+            // 读取本地Cookie
             string mycookie =  Functions.Read(username);
+
+            // 如果为空则重新请求，否则直接返回。
+            // 暂不考虑过期问题。据悉大概1年的生命周期。几乎无所谓。
             if (mycookie == "") {
                 Jiyan jy = GetJiyan();
                 Dictionary<string, string> d = new Dictionary<string, string> {
@@ -104,6 +115,7 @@ namespace WinFormApp
                 };
                 HttpResult result = http.GetHtml(item);
                 mycookie = result.Cookie;
+                // 将Cookie保存到本地
                 Functions.SaveCookie(username, mycookie);
             }
             return mycookie;
