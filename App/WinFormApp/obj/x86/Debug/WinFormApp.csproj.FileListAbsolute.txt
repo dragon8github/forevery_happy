@@ -20,3 +20,4 @@ C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.cspr
 C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csproj.CoreCompileInputs.cache
 C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.exe
 C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.pdb
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csprojResolveAssemblyReference.cache
