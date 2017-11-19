@@ -10,3 +10,13 @@ C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormA
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csprojResolveAssemblyReference.cache
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\bin\Debug\HttpHelper.dll
 C:\Users\lizhaohong\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.Form1.resources
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\bin\Debug\WinFormApp.exe.config
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\bin\Debug\WinFormApp.exe
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\bin\Debug\WinFormApp.pdb
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\bin\Debug\HttpHelper.dll
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.Form1.resources
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.Properties.Resources.resources
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csproj.GenerateResource.Cache
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.csproj.CoreCompileInputs.cache
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.exe
+C:\Users\Lee\Desktop\forevery_happy\App\WinFormApp\obj\x86\Debug\WinFormApp.pdb
