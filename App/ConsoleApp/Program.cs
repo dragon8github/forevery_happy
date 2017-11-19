@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Reflection;
-using System.Text;
+using System.IO;
 
 namespace ConsoleApp
 {
     class Program
     {
+
+
         static void Main(string[] args)
         {
-            var uuid = Guid.NewGuid().ToString();
-            Console.WriteLine(uuid);
-
-            Console.ReadLine();
+            string currenctDir = AppDomain.CurrentDomain.BaseDirectory;
+            Console.Write(currenctDir);
+            File.WriteAllText(currenctDir + "connstr.txt", "hello");
+            Console.ReadKey();
         }
     }
 }

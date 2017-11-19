@@ -3,17 +3,18 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
+
 namespace WinFormApp
 {
     public class FuckWebBrowser
     {
         WebBrowser w;
 
-        public FuckWebBrowser(WebBrowser w) {
+        public FuckWebBrowser(WebBrowser w)
+        {
             w.ObjectForScripting = this;
             this.w = w;
         }
-
         /// <summary>
         /// 登录
         /// </summary>
@@ -21,31 +22,38 @@ namespace WinFormApp
         /// <param name="password"></param>
         public void Login(string username, string password)
         {
-            ExecScript(@"     
-                $('#username').val('" + username + @"'); 
-                $('#password').val('" + password + @"'); 
-                document.getElementById('loginsubmit').click(); 
+            ExecScript(@"
+                $('#username').val('" + username + @"');
+                $('#password').val('" + password + @"');
+                document.getElementById('loginsubmit').click();
+
+                function SendClick(el, x, y) {
+                    var ev = document.createEvent('HTMLEvents');
+                    ev.clientX = parseInt(x);
+                    ev.clientY = parseInt(y);
+                    ev.initEvent('click', false, true);
+                    el.dispatchEvent(ev);
+                }
+
                 var s = setInterval(function() {
                     document.getElementById('loginsubmit').click(); 
-                    if ($('.geetest_widget').is(':visible') && $('.geetest_item_img').length && $('.geetest_item_img')[0].complete) {  
-                        clearInterval(s);
+                    if ($('.geetest_widget').is(':visible') && $('.geetest_item_img').length && $('.geetest_item_img')[0].complete) { 
+                        window.clearInterval(s);
                         $('.geetest_panel_box').css({left:0,top:0,transform:'translate(0, 0)'});
-                        $('.geetest_commit_tip').attr('id','geetest_commit_tip');
                         setTimeout(function () {
-                           var path = window.external.CutPic();
-                           var returnMess = window.external.SendImage(path);
-                           var arr = returnMess.split('|');
-                           for (var i = 0; i < arr.length - 2; i++) {
-                               var _arr = arr[i].split(',');
-                               window.alert(_arr[0]+'|'+_arr[1]);
-                               var ev = document.createEvent('HTMLEvents'); 
-                               ev.clientX = parseInt(_arr[0]);
-                               ev.clientY = parseInt(_arr[1]);
-                               ev.initEvent('click', false, true); 
-                               $('.geetest_item.geetest_big_item')[0].dispatchEvent(ev);
-                           }
-                          //document.getElementById('geetest_commit_tip').click(); 
-                          setTimeout(function () {window.external.CutPic(0, 0, 1024, 768);}, 3000)
+                                var path = window.external.CutPic();
+                                var returnMess = window.external.SendImage(path);
+                                var arr = returnMess.split('|');
+                                for (var i = 0; i < arr.length - 2; i++) {
+                                    var _arr = arr[i].split(',');
+                                    window.external.Msg( _arr[0] +','+ _arr[1]);
+                                    SendClick($('.geetest_item.geetest_big_item')[0], _arr[0], _arr[1]);
+                                } 
+                                setTimeout(function () { 
+                                    $('.geetest_panel_box').removeAttr('style');
+                                    window.external.CutPic(0, 0, 1024, 768);  
+                                    $('.geetest_commit_tip').click();
+                                } ,3000);
                         }, 500);
                     }
                 }, 100)
@@ -90,6 +98,7 @@ namespace WinFormApp
                 w.Url = new Uri(url);
             }
             catch (Exception ex) {
+                Console.WriteLine(ex.Message);
                 MessageBox.Show("URL格式有问题，请确保不为空并且包含 http:// 或者 https:// \r\n\r\n" + ex.Message);
             }
             return w;
