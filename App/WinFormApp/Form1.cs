@@ -74,9 +74,13 @@ namespace WinFormApp
             string html = result.Html;
             var htmlDoc = new HtmlAgilityPack.HtmlDocument();
             htmlDoc.LoadHtml(html);
-            string xpath = "//*[@id=\"Jprice\"]/li[1]";
-            var value = htmlDoc.DocumentNode.SelectSingleNode(xpath);
-            string n = value.Attributes["n"].Value;
+            string xpath = "//*[@id=\"Jprice\"]/li";
+            var childNodes = htmlDoc.DocumentNode.SelectNodes(xpath);
+            foreach (var node in childNodes) {
+                if (node.NodeType == HtmlNodeType.Element) {
+                    MessageBox.Show(node.Attributes["n"].Value);
+                }
+            }
             MessageBox.Show(html);
         }
     }

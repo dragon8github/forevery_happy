@@ -3,6 +3,7 @@ http://www.sufeinet.com/thread-9989-1-1.html
 http://tool.sufeinet.com/HttpHelper.aspx
 
 # HTML解析插件
+https://github.com/zzzprojects/html-agility-pack
 
 # 极验开发文档
 http://jiyandoc.c2567.com/433012
