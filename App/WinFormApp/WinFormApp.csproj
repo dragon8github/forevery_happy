@@ -58,6 +58,8 @@
     </Compile>
     <Compile Include="Fuck.cs" />
     <Compile Include="Funcions.cs" />
+    <Compile Include="Models\Provinces.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\Geetest.cs" />
     <Compile Include="Models\Jiyan.cs" />
     <Compile Include="Program.cs" />

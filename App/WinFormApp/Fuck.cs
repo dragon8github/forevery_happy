@@ -5,6 +5,7 @@ using CsharpHttpHelper.Enum;
 using WinFormApp;
 using System.Windows.Forms;
 using WinFormApp.Models;
+using System.IO;
 
 namespace WinFormApp
 {
@@ -22,6 +23,24 @@ namespace WinFormApp
         }
 
         /// <summary>
+        /// 判断是否登陆
+        /// </summary>
+        /// <param name="cookie"></param>
+        /// <returns></returns>
+        private bool IsLogin(string cookie) {
+            HttpItem item = new HttpItem() {
+                URL = "https://www.228.com.cn/ajax/isLogin",
+                Method = "GET",
+                Cookie = cookie,
+                Allowautoredirect = true,
+                AutoRedirectCookie = true
+            };
+            HttpResult result = http.GetHtml(item);
+            string html = result.Html;
+            return Convert.ToBoolean(html);
+        }
+
+        /// <summary>
         /// 抓包获取极验参数
         /// </summary>
         /// <returns></returns>
@@ -36,6 +55,47 @@ namespace WinFormApp
             };
             HttpResult result = http.GetHtml(item);
             return result.Html;
+        }
+
+        public string GetProvinces(string str)
+        {
+            // 查看本地缓存是否存在json文件
+            string path = AppDomain.CurrentDomain.BaseDirectory + "/Cache/" + "provinces.json";
+            // 预定义
+            string provinces = "";
+            // 如果存在则直接获取
+            if (File.Exists(@path)) {
+                provinces = File.ReadAllText(@path);
+            
+            // 如果不存在，则前往url读取并且缓存在本地
+            } else {
+                HttpItem item = new HttpItem() {
+                    URL = "https://www.228.com.cn/ajax/loadRange?type=provinces&typeId=0",
+                    Method = "GET",
+                    Allowautoredirect = true,
+                    AutoRedirectCookie = true
+                };
+                HttpResult result = http.GetHtml(item);
+                provinces = result.Html;
+
+                string currenctDir = AppDomain.CurrentDomain.BaseDirectory + "/Cache/";
+                if (!Directory.Exists(currenctDir)) {
+                    Directory.CreateDirectory(currenctDir);
+                }
+                File.WriteAllText(currenctDir + "provinces.json", provinces);
+            }
+
+            Provinces p = (Provinces)HttpHelper.JsonToObject<Provinces>(provinces);
+
+            string id = "";
+            foreach (var _p in p.rangeList) {
+                if (_p.NAME == str) {
+                    id = _p.PROVINCEID.ToString();
+                    break;
+                }
+            }
+
+            return id;
         }
 
         /// <summary>
@@ -68,6 +128,7 @@ namespace WinFormApp
             string cookie = result.Cookie;
             Jiyan jy = (Jiyan)HttpHelper.JsonToObject<Jiyan>(html);
             if (jy.status == "stop") {
+                MessageBox.Show("极验账户积分不足！请充值再尝试！");
                 throw new Exception("极验账户积分不足！请充值再尝试！");
             }
             if (jy.status != "ok") {
@@ -91,11 +152,10 @@ namespace WinFormApp
         public string Login(string username, string password)
         {
             // 读取本地Cookie
-            string mycookie =  Functions.Read(username);
+            string mycookie =  Functions.ReadCookie(username);
 
-            // 如果为空则重新请求，否则直接返回。
-            // 暂不考虑过期问题。据悉大概1年的生命周期。几乎无所谓。
-            if (mycookie == "") {
+            // 如果为空或者登陆无效，则重新请求，否则直接返回该cookie。
+            if (mycookie == "" || IsLogin(mycookie) == false) {
                 Jiyan jy = GetJiyan();
                 Dictionary<string, string> d = new Dictionary<string, string> {
                     { "username", username },
@@ -119,6 +179,25 @@ namespace WinFormApp
                 Functions.SaveCookie(username, mycookie);
             }
             return mycookie;
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="cookie"></param>
+        /// <returns></returns>
+        public UserInfo GetUserInfo(string cookie) {
+            HttpItem item = new HttpItem() {
+                URL = "https://www.228.com.cn/ajax/getUserInfoFact",
+                Method = "GET",
+                Cookie = cookie,
+                Allowautoredirect = true,
+                AutoRedirectCookie = true
+            };
+            HttpResult result = http.GetHtml(item);
+            string html = result.Html;
+            UserInfo user = (UserInfo)HttpHelper.JsonToObject<UserInfo>(html);
+            return user;
         }
     }
 }

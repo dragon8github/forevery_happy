@@ -108,12 +108,14 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button16 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -574,6 +576,7 @@
             this.button9.TabIndex = 12;
             this.button9.Text = "获取门票";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // textBox2
             // 
@@ -592,7 +595,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(2026, 42);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "http://www.228.com.cn/ticket-247871324.html";
+            this.textBox1.Text = "https://www.228.com.cn/ticket-329863364.html";
             // 
             // label6
             // 
@@ -1011,6 +1014,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button17);
+            this.tabPage4.Controls.Add(this.button16);
             this.tabPage4.Controls.Add(this.button15);
             this.tabPage4.Controls.Add(this.textBox11);
             this.tabPage4.Controls.Add(this.button14);
@@ -1024,6 +1029,16 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "测试专用区";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(359, 263);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(277, 62);
+            this.button16.TabIndex = 6;
+            this.button16.Text = "GET测试专用";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // button15
             // 
@@ -1085,6 +1100,16 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "众联打码测试";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(704, 263);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(302, 62);
+            this.button17.TabIndex = 7;
+            this.button17.Text = "GET测试专用";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // Form1
             // 
@@ -1227,6 +1252,8 @@
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
     }
 }
 

@@ -44,10 +44,10 @@ namespace WinFormApp
         }
 
         /// <summary>
-        /// 读取txt文本信息
+        /// 读取Cookie文本信息
         /// </summary>
         /// <param name="path"></param>
-        public static string Read(string username)
+        public static string ReadCookie(string username)
         {
             string mycookie = AppDomain.CurrentDomain.BaseDirectory + "/Cookies/" + username + ".txt";
             if (!File.Exists(@mycookie)) {

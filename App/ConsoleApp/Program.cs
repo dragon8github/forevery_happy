@@ -5,8 +5,6 @@ namespace ConsoleApp
 {
     class Program
     {
-
-
         static void Main(string[] args)
         {
             string currenctDir = AppDomain.CurrentDomain.BaseDirectory;

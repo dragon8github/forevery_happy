@@ -4,6 +4,9 @@ using System;
 using System.Windows.Forms;
 using WinFormApp.Models;
 using HtmlAgilityPack;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.IO;
 
 namespace WinFormApp
 {
@@ -63,11 +66,16 @@ namespace WinFormApp
 
         private void button15_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
             string cookie = _fuck.Login("13713332652", "202063sb");
             string url = textBox11.Text;
             HttpItem item = new HttpItem() {
-                URL= url,
-                Method="GET",
+                URL = url,
+                Method = "GET",
                 Cookie = cookie,
             };
             HttpResult result = _http.GetHtml(item);
@@ -76,12 +84,46 @@ namespace WinFormApp
             htmlDoc.LoadHtml(html);
             string xpath = "//*[@id=\"Jprice\"]/li";
             var childNodes = htmlDoc.DocumentNode.SelectNodes(xpath);
+            string str = "";
             foreach (var node in childNodes) {
                 if (node.NodeType == HtmlNodeType.Element) {
-                    MessageBox.Show(node.Attributes["n"].Value);
+                    // MessageBox.Show(node.Attributes["n"].Value);
+                    // MessageBox.Show(node.Attributes["title"].Value);
+                    str += node.Attributes["title"].Value + ":" + node.Attributes["n"].Value + "张;";
                 }
             }
-            MessageBox.Show(html);
+            textBox5.Text = str;
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            string cookie = _fuck.Login("13713332652", "202063sb");
+            HttpItem item = new HttpItem() {
+                URL = "https://www.228.com.cn/deliveryAddress/deliveryaddress",
+                Method = "GET",
+                Cookie = cookie,
+                Allowautoredirect = true,
+                AutoRedirectCookie = true
+            };
+            HttpResult result = _http.GetHtml(item);
+            string html = result.Html;
+
+            // 获取addressid
+            Regex reg = new Regex(@"updateAddress\((.+?)\)");
+            MatchCollection match = reg.Matches(html);
+            // 如果存在的话，就使用修改接口
+            if (match.Count > 0) {
+                string addressid = match[0].Groups[1].Value.ToString();
+            }
+            // 如果不存在的话，使用添加接口
+            else {
+
+            }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            string provinces_id = _fuck.GetProvinces("广东省");
         }
     }
 }
