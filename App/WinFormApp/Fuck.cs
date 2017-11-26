@@ -57,6 +57,11 @@ namespace WinFormApp
             return result.Html;
         }
 
+        /// <summary>
+        ///  获取省会
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public string GetProvinces(string str)
         {
             // 查看本地缓存是否存在json文件
@@ -91,6 +96,137 @@ namespace WinFormApp
             foreach (var _p in p.rangeList) {
                 if (_p.NAME == str) {
                     id = _p.PROVINCEID.ToString();
+                    break;
+                }
+            }
+
+            return id;
+        }
+
+        /// <summary>
+        ///  获取城市
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public string GetCity(string pid, string str)
+        {
+            // 查看本地缓存是否存在json文件
+            string path = AppDomain.CurrentDomain.BaseDirectory + "/Cache/" + pid + "_city.json";
+            // 预定义
+            string provinces = "";
+            // 如果存在则直接获取
+            if (File.Exists(@path)) {
+                provinces = File.ReadAllText(@path);
+
+                // 如果不存在，则前往url读取并且缓存在本地
+            }
+            else {
+                HttpItem item = new HttpItem() {
+                    URL = "https://www.228.com.cn/ajax/loadRange?type=cities&typeId=" + pid,
+                    Method = "GET",
+                    Allowautoredirect = true,
+                    AutoRedirectCookie = true
+                };
+                HttpResult result = http.GetHtml(item);
+                provinces = result.Html;
+
+                string currenctDir = AppDomain.CurrentDomain.BaseDirectory + "/Cache/";
+                if (!Directory.Exists(currenctDir)) {
+                    Directory.CreateDirectory(currenctDir);
+                }
+                File.WriteAllText(currenctDir + pid + "_city.json", provinces);
+            }
+
+            Provinces p = (Provinces)HttpHelper.JsonToObject<Provinces>(provinces);
+
+            string id = "";
+            foreach (var _p in p.rangeList) {
+                if (_p.NAME == str) {
+                    id = _p.CITYID.ToString();
+                    break;
+                }
+            }
+
+            return id;
+        }
+
+        public string GetArea(string cid, string str)
+        {
+            // 查看本地缓存是否存在json文件
+            string path = AppDomain.CurrentDomain.BaseDirectory + "/Cache/" + cid + "_area.json";
+            // 预定义
+            string provinces = "";
+            // 如果存在则直接获取
+            if (File.Exists(@path)) {
+                provinces = File.ReadAllText(@path);
+
+                // 如果不存在，则前往url读取并且缓存在本地
+            }
+            else {
+                HttpItem item = new HttpItem() {
+                    URL = "https://www.228.com.cn/ajax/loadRange?type=areas&typeId=" + cid,
+                    Method = "GET",
+                    Allowautoredirect = true,
+                    AutoRedirectCookie = true
+                };
+                HttpResult result = http.GetHtml(item);
+                provinces = result.Html;
+
+                string currenctDir = AppDomain.CurrentDomain.BaseDirectory + "/Cache/";
+                if (!Directory.Exists(currenctDir)) {
+                    Directory.CreateDirectory(currenctDir);
+                }
+                File.WriteAllText(currenctDir + cid + "_area.json", provinces);
+            }
+
+            Provinces p = (Provinces)HttpHelper.JsonToObject<Provinces>(provinces);
+
+            string id = "";
+            foreach (var _p in p.rangeList) {
+                if (_p.NAME == str) {
+                    id = _p.AREAID.ToString();
+                    break;
+                }
+            }
+
+            return id;
+        }
+
+        public string GetCodeId(string aid)
+        {
+            // 查看本地缓存是否存在json文件
+            string path = AppDomain.CurrentDomain.BaseDirectory + "/Cache/" + aid + "_codes.json";
+            // 预定义
+            string provinces = "";
+            // 如果存在则直接获取
+            if (File.Exists(@path)) {
+                provinces = File.ReadAllText(@path);
+
+                // 如果不存在，则前往url读取并且缓存在本地
+            }
+            else {
+                HttpItem item = new HttpItem() {
+                    URL = "https://www.228.com.cn/ajax/loadRange?type=codes&typeId=" + aid,
+                    Method = "GET",
+                    Allowautoredirect = true,
+                    AutoRedirectCookie = true
+                };
+                HttpResult result = http.GetHtml(item);
+                provinces = result.Html;
+
+                string currenctDir = AppDomain.CurrentDomain.BaseDirectory + "/Cache/";
+                if (!Directory.Exists(currenctDir)) {
+                    Directory.CreateDirectory(currenctDir);
+                }
+                File.WriteAllText(currenctDir + aid + "_code.json", provinces);
+            }
+
+            Provinces p = (Provinces)HttpHelper.JsonToObject<Provinces>(provinces);
+
+            string id = "";
+            foreach (var _p in p.rangeList) {
+                if (_p.AREAID.ToString() == aid) {
+                    id = _p.CODEID.ToString();
                     break;
                 }
             }

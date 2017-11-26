@@ -124,6 +124,12 @@ namespace WinFormApp
         private void button17_Click(object sender, EventArgs e)
         {
             string provinces_id = _fuck.GetProvinces("广东省");
+
+            string cid = _fuck.GetCity(provinces_id, "东莞市");
+
+            string aid = _fuck.GetArea(cid, "南城区");
+
+            string code = _fuck.GetCodeId(aid);
         }
     }
 }
